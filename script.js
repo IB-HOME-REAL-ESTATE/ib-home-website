@@ -348,3 +348,26 @@ const btn = document.getElementById("searchBtn");
 if (btn) {
 btn.addEventListener("click", searchFirebaseProperties);
 }
+import { deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+window.deleteProperty = async function(id) {
+
+const ok = confirm("Are you sure you want to delete this property?");
+
+if (!ok) return;
+
+try {
+
+await deleteDoc(doc(db, "properties", id));
+
+alert("Property Deleted Successfully");
+
+location.reload();
+
+} catch (error) {
+
+alert(error.message);
+
+}
+
+};
