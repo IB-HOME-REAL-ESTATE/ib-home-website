@@ -73,14 +73,23 @@ async function loadProperties() {
         const data = doc.data();
 
         propertyList.innerHTML += `
-        <div class="card">
-            <img src="${data.image}" alt="Property Image">
-            <h3>${data.title}</h3>
-            <p>📍 ${data.location}</p>
-            <h4>PKR ${data.price}</h4>
-            <a href="property.html">View Details</a>
-        </div>
-        `;
+<div class="card">
+<img src="${data.image}" alt="Property Image">
+
+<h3>${data.title}</h3>
+
+<p>📍 ${data.location}</p>
+
+<h4>PKR ${data.price}</h4>
+
+<a href="property.html">View Details</a>
+
+<button onclick="deleteProperty('${doc.id}')">
+🗑 Delete
+</button>
+
+</div>
+`;
     });
 }
 
