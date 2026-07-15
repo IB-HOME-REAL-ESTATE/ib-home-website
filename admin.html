@@ -52,13 +52,14 @@
 
 <textarea placeholder="Description"></textarea>
 
-<button>Add Property</button>
+<button id="addPropertyBtn">Add Property</button>
 
 <script type="module">
 import { db } from "./firebase.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-document.querySelector("button").addEventListener("click", async () => {
+
+document.getElementById("addPropertyBtn").addEventListener("click", async () => {
 
 const inputs = document.querySelectorAll("input");
 const textarea = document.querySelector("textarea");
@@ -113,5 +114,10 @@ alert(error.message);
 
 });
 </script>
+
+
+<script type="module" src="firebase.js"></script>
+
+
 </body>
 </html>
