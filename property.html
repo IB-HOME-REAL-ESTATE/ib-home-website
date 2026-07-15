@@ -181,7 +181,29 @@ loading="lazy">
 
 <script src="script.js"></script>
 
+<script type="module">
+import { db } from "./firebase.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+async function loadProperty() {
+    const querySnapshot = await getDocs(collection(db, "properties"));
+
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+
+        document.getElementById("pTitle").innerText = data.title;
+        document.getElementById("pPrice").innerText = "Price: Rs. " + data.price;
+        document.getElementById("pCity").innerText = "Location: " + data.location;
+        document.getElementById("pDescription").innerText = data.description;
+
+        if (data.image) {
+            document.getElementById("sliderImage").src = data.image;
+        }
+    });
+}
+
+loadProperty();
+</script>
 </body>
 
 </html>
