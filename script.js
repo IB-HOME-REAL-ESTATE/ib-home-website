@@ -1,3 +1,4 @@
+import { db } from "./firebase.js";
 // Mobile Menu
 
 let menu = document.querySelector(".menu-btn");
