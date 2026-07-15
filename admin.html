@@ -1,103 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+    <title>IB Home Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>IB Home Admin Panel</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <style>
+        body{
+            font-family: Arial;
+            padding:20px;
+            background:#f5f5f5;
+        }
+        h2{
+            text-align:center;
+        }
+        input, textarea{
+            width:100%;
+            padding:12px;
+            margin:8px 0;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+        button{
+            width:100%;
+            padding:12px;
+            background:#0066cc;
+            color:white;
+            border:none;
+            border-radius:5px;
+            font-size:18px;
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-<header>
-
-<div class="logo">
-🏠 IB Home Admin
-</div>
-
-<nav>
-
-<a href="index.html">Home</a>
-
-</nav>
-
-</header>
-
-
-
-<section class="admin-box">
-
-<input type="text" placeholder="Description">
-
-<input type="text" placeholder="Phone Number">
-<h1>Add New Property</h1>
-
+<h2>IB Home Add Property</h2>
 
 <input type="text" placeholder="Property Title">
 
+<input type="number" placeholder="Price">
 
-<input type="text" placeholder="City / Location">
+<input type="text" placeholder="Location">
 
+<input type="text" placeholder="Area (Marla)">
 
-<input type="text" placeholder="Price">
+<input type="number" placeholder="Bedrooms">
 
+<input type="number" placeholder="Bathrooms">
 
-<input type="text" placeholder="Area (Marla/Kanal)">
+<input type="text" placeholder="Image URL">
 
+<textarea placeholder="Description"></textarea>
 
-<input type="text" placeholder="Bedrooms">
-
-
-<input type="text" placeholder="Bathrooms">
-
-
-
-<select>
-
-<option>House</option>
-
-<option>Plot</option>
-
-<option>Apartment</option>
-
-<option>Commercial</option>
-
-</select>
-
-
-
-<input id="propertyImage" type="file" accept="image/*">
-
-
-
-<button onclick="addProperty()">
-Add Property
-</button>
-
-
-
-</section>
-
-
-
-<footer>
-
-<h2>IB Home Real Estate</h2>
-
-</footer>
-
-
-
-<script src="script.js"></script>
+<button>Add Property</button>
 
 
 </body>
-
 </html>
