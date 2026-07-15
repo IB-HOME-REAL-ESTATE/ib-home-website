@@ -60,7 +60,7 @@
 </footer>
 <script type="module">
 import { db } from "./firebase.js";
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const propertyList = document.getElementById("property-list");
 
@@ -84,7 +84,7 @@ async function loadProperties() {
 
 <a href="property.html">View Details</a>
 
-<button onclick="deleteProperty('${doc.id}')">
+<button class="deleteBtn" data-id="${doc.id}">
 🗑 Delete
 </button>
 
@@ -100,3 +100,24 @@ loadProperties();
 
 </body>
 </html>
+document.addEventListener("click", async function(e){
+
+if(e.target.classList.contains("deleteBtn")){
+
+let id = e.target.getAttribute("data-id");
+
+let confirmDelete = confirm("Delete this property?");
+
+if(confirmDelete){
+
+await deleteDoc(doc(db,"properties",id));
+
+alert("Deleted Successfully");
+
+loadProperties();
+
+}
+
+}
+
+});
