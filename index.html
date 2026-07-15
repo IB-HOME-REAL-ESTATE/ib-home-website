@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,229 +11,84 @@
 
 <body>
 
-<header>
+<header class="header">
 
 <div class="logo">
 🏠 IB Home Real Estate
 </div>
 
-<button class="menu-btn">☰</button>
-
 <nav>
-<a href="#">Home</a>
+<a href="index.html">Home</a>
 <a href="#">Buy</a>
 <a href="#">Rent</a>
 <a href="#">Commercial</a>
-<a href="login.html">Admin Login</a>
+<a href="admin.html">Admin</a>
 </nav>
 
 </header>
-<button onclick="darkMode()" class="dark-btn">
-🌙 Dark Mode
-</button>
 
 <section class="hero">
 
 <h1>Find Your Dream Property</h1>
 
-<p>Buy, Sell & Rent Properties in Pakistan</p>
+<p>Buy, Sell & Rent Properties Across Pakistan</p>
 
+<input type="text" id="searchInput" placeholder="Search by Location">
 
-<div class="search-box">
-<div class="filters">
-
-<button>All</button>
-
-<button>House</button>
-
-<button>Plot</button>
-
-<button>Apartment</button>
-
-<button>Commercial</button>
-
-</div>
-<select>
-<option>Buy</option>
-<option>Rent</option>
-</select>
-
-
-<select>
-<option>House</option>
-<option>Plot</option>
-<option>Apartment</option>
-<option>Commercial</option>
-</select>
-
-
-<input type="text" placeholder="Search City">
-
-
-<input type="text" placeholder="Price">
-
-
-<button onclick="searchProperty()">Search</button>
-
-</div>
+<button id="searchBtn">Search</button>
 
 </section>
-
-
 
 <section class="properties">
 
+<h2>Latest Properties</h2>
 
+<div id="property-list">
 
-
-<h2>Featured Properties</h2>
-
-<section class="services">
-
-<h2>Our Services</h2>
-
-<div class="service-box">
-🏠 Buy Property
-</div>
-
-<div class="service-box">
-💰 Sell Property
-</div>
-
-<div class="service-box">
-🏢 Rent Property
-</div>
-
-<div class="service-box">
-📋 Property Management
 </div>
 
 </section>
 
-
-
-<div class="property-container">
-
-
-<div class="card">
-
-<img src="https://via.placeholder.com/350x220">
-
-<h3>5 Marla Luxury House</h3>
-
-<p>📍 DHA Lahore</p>
-
-<h4>PKR 1.85 Crore</h4>
-
-<a href="property.html">View Details</a>
-
-</div>
-
-
-
-<div class="card">
-<img src="https://via.placeholder.com/350x220">
-
-<div class="favorite">❤️</div>
-
-<h3>5 Marla Luxury House</h3>
-
-<img src="https://via.placeholder.com/350x220">
-
-<h3>10 Marla Plot</h3>
-
-<p>📍 Bahria Town Lahore</p>
-
-<h4>PKR 1.45 Crore</h4>
-
-<a href="property.html">View Details</a>
-
-<button onclick="deleteProperties()">
-🗑️ Delete All Properties
-</button>
-</div>
-
-
-</div>
-
-
-<div id="new-property"></div>
-
-
-</section>
-
-
-
-
-<section class="about">
-
-<h2>About IB Home Real Estate</h2>
-
-<p>
-Your trusted partner for buying, selling and renting properties.
-</p>
-
-</section>
-
-
-
-
-<div class="contact-buttons">
-
-<a href="tel:03224313616">📞 Call Now</a>
-
-
-<a href="https://wa.me/923224313616">💬
-WhatsApp</a>
-
-</div>
-
-
-
-<section class="contact">
-
-<h2>Contact Us</h2>
-
-<input type="text" placeholder="Your Name">
-
-<input type="email" placeholder="Your Email">
-
-<textarea placeholder="Your Message"></textarea>
-
-<button>Send Message</button>
-
-</section>
-<section class="testimonials">
-
-<h2>What Our Clients Say</h2>
-
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>"IB Home Real Estate نے ہمیں بہترین گھر دلایا۔"</p>
-<h4>- Ali Khan</h4>
-</div>
-
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>"بہت اچھی سروس اور ایماندار ڈیلنگ۔"</p>
-<h4>- Ahmed Raza</h4>
-</div>
-
-</section>
 <footer>
 
 <h2>IB Home Real Estate</h2>
 
-<p>Lahore Pakistan</p>
+<p>📍 Lahore, Pakistan</p>
+
+<p>📞 0322-4313616</p>
 
 </footer>
+<script type="module">
+import { db } from "./firebase.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const propertyList = document.getElementById("property-list");
 
+async function loadProperties() {
+    propertyList.innerHTML = "";
+
+    const snapshot = await getDocs(collection(db, "properties"));
+
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+
+        propertyList.innerHTML += `
+        <div class="card">
+            <img src="${data.image}" alt="Property Image">
+            <h3>${data.title}</h3>
+            <p>📍 ${data.location}</p>
+            <h4>PKR ${data.price}</h4>
+            <a href="property.html">View Details</a>
+        </div>
+        `;
+    });
+}
+
+loadProperties();
+</script>
 
 <script src="script.js"></script>
 <script type="module" src="firebase.js"></script>
+
 </body>
-
 </html>
-
-<a href="signup.html">Sign Up</a>
