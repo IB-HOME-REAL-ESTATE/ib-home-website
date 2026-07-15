@@ -28,6 +28,7 @@
             border:none;
             border-radius:5px;
             font-size:18px;
+            cursor:pointer;
         }
     </style>
 </head>
@@ -37,19 +38,12 @@
 <h2>IB Home Add Property</h2>
 
 <input type="text" placeholder="Property Title">
-
 <input type="number" placeholder="Price">
-
 <input type="text" placeholder="Location">
-
 <input type="text" placeholder="Area (Marla)">
-
 <input type="number" placeholder="Bedrooms">
-
 <input type="number" placeholder="Bathrooms">
-
 <input type="text" placeholder="Image URL">
-
 <textarea placeholder="Description"></textarea>
 
 <button id="addPropertyBtn">Add Property</button>
@@ -58,13 +52,13 @@
 import { db } from "./firebase.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
 document.getElementById("addPropertyBtn").addEventListener("click", async () => {
 
 const inputs = document.querySelectorAll("input");
 const textarea = document.querySelector("textarea");
 
 try {
+
 await addDoc(collection(db, "properties"), {
 title: inputs[0].value,
 price: inputs[1].value,
@@ -79,45 +73,14 @@ description: textarea.value
 alert("Property Added Successfully!");
 
 } catch(error) {
-alert(error);
-}
 
-});
-</script>
-<script type="module">
-  alert("Script is working");
-import { db } from "./firebase.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-document.querySelector("button").addEventListener("click", async () => {
-
-const inputs = document.querySelectorAll("input");
-const textarea = document.querySelector("textarea");
-
-try {
-await addDoc(collection(db, "properties"), {
-title: inputs[0].value,
-price: inputs[1].value,
-location: inputs[2].value,
-area: inputs[3].value,
-bedrooms: inputs[4].value,
-bathrooms: inputs[5].value,
-image: inputs[6].value,
-description: textarea.value
-});
-
-alert("Property Added Successfully!");
-
-} catch(error) {
 alert(error.message);
+
 }
 
 });
+
 </script>
-
-
-<script type="module" src="firebase.js"></script>
-
 
 </body>
 </html>
