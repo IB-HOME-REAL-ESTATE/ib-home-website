@@ -303,3 +303,48 @@ location.reload();
 }
 
 }
+import { db } from "./firebase.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+async function searchFirebaseProperties() {
+
+const search = document.getElementById("searchInput").value.toLowerCase();
+
+const propertyList = document.getElementById("property-list");
+
+if (!propertyList) return;
+
+propertyList.innerHTML = "";
+
+const snapshot = await getDocs(collection(db, "properties"));
+
+snapshot.forEach((doc) => {
+
+const data = doc.data();
+
+if (
+data.location.toLowerCase().includes(search) ||
+data.title.toLowerCase().includes(search)
+) {
+
+propertyList.innerHTML += `
+<div class="card">
+<img src="${data.image}">
+<h3>${data.title}</h3>
+<p>📍 ${data.location}</p>
+<h4>PKR ${data.price}</h4>
+<a href="property.html">View Details</a>
+</div>
+`;
+
+}
+
+});
+
+}
+
+const btn = document.getElementById("searchBtn");
+
+if (btn) {
+btn.addEventListener("click", searchFirebaseProperties);
+}
