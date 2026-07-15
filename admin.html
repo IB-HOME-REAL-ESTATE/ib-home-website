@@ -54,6 +54,34 @@
 
 <button>Add Property</button>
 
+<script type="module">
+import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+document.querySelector("button").addEventListener("click", async () => {
+
+const inputs = document.querySelectorAll("input");
+const textarea = document.querySelector("textarea");
+
+try {
+await addDoc(collection(db, "properties"), {
+title: inputs[0].value,
+price: inputs[1].value,
+location: inputs[2].value,
+area: inputs[3].value,
+bedrooms: inputs[4].value,
+bathrooms: inputs[5].value,
+image: inputs[6].value,
+description: textarea.value
+});
+
+alert("Property Added Successfully!");
+
+} catch(error) {
+alert(error);
+}
+
+});
+</script>
 </body>
 </html>
